@@ -1,0 +1,5 @@
+docker exec -it mysql mysql -u root -p
+
+
+
+this is the commend to connect to the database in the terminal shell with docker
