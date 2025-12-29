@@ -52,6 +52,27 @@ app.get('/', (req, res) => {
 })
 
 
+
+app.get('/api/tasks', async (req, res) => {
+  try {    
+    const [tasks] = await connection.query(`SELECT * FROM tasks ORDER BY
+       created_at DESC`);
+    console.log(tasks)
+    res.json({
+      success: true,
+      count: tasks.length,
+      data: tasks
+    });
+  } catch (err) {
+    console.error("faild to get all tasks", err)
+    res.status(500).json({
+      success: false,
+      message: "faild to get all tasks",
+      error: err.message
+    });
+  }
+});
+
 setupDatabase()
 app.listen(PORT, () => {
   console.log(`🚀 Server is running on http://localhost:${PORT}`);
