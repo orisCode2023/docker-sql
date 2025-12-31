@@ -1,0 +1,9 @@
+
+// docker compose basic commands
+// ===============================
+docker-compose up -d
+docker-compose down
+
+// Ender to mogo shell
+// =====================
+docker exec -it mongodb mongosh -u admin -p password123
