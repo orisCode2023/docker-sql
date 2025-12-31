@@ -1,7 +1,7 @@
 import mysql from 'mysql2/promise'
 
 export async function initSqlDb() {
-    const initConnection = await mysql.createConnection({
+    const sqlConn = await mysql.createConnection({
         host: "localhost",
         user: "root",
         password: "root",
@@ -21,14 +21,14 @@ export async function initSqlDb() {
         orderDate DATETIME DEFAULT CURRENT_TIMESTAMP
         )`;
 
-    await initConnection.query(CREATE_DB_QUERY)
-    await initConnection.query(USE_DB_QUERY)
-    await initConnection.query(CREATE_TABLE_QUERY)
+    await sqlConn.query(CREATE_DB_QUERY)
+    await sqlConn.query(USE_DB_QUERY)
+    await sqlConn.query(CREATE_TABLE_QUERY)
 }
 
 let conn = null;
 
-export async function getConn() {
+export async function getConnSql() {
   if (conn) return conn;
   else {
     const conn = await mysql.createConnection({
